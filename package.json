@@ -13,7 +13,7 @@
     "sync:profile": "node scripts/sync-profile.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": "20.x"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

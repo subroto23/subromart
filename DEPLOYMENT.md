@@ -10,6 +10,12 @@
 
 **Cloudflare Pages / Netlify:** build command `npm run build`, output directory `dist`। Build-এর runtime dependency শুধু Node.js; `_headers` ও `_redirects` output-এ অন্তর্ভুক্ত। Platform-specific domain binding ও DNS configure করুন।
 
+**Vercel:** repo root-এর `vercel.json`-এ build command (`node scripts/build.mjs`), output directory (`dist`), redirects (`/en/*` → `/*`) ও security/CSP header আগে থেকেই সেট করা আছে। শুধু GitHub repo import করলেই এই config auto-detect হবে — dashboard-এ Framework Preset **Other** থাকবে।
+
+`installCommand`-কে ইচ্ছাকৃতভাবে no-op রাখা হয়েছে (`echo`), কারণ `npm run build`-এর কোনো npm dependency লাগে না (শুধু Node built-in module ব্যবহার করে)। ডিফল্ট `npm install` চালালে `devDependencies`-এর `sharp`/`@playwright/test` (native binary/browser download সহ) install করতে গিয়ে Vercel-এ ব্যর্থ হতে পারে বা Node version mismatch error দিতে পারে — এই কারণেই আগে "node version problem" দেখা দিচ্ছিল। `package.json`-এর `engines.node` এখন Vercel-সমর্থিত সুনির্দিষ্ট ভার্সন `20.x` (আগে ছিল `>=20`, যেটা Vercel সবসময় ঠিকভাবে চিনতে পারে না)।
+
+`vercel.json`-এর CSP hash তিনটি (`theme-init.js`, `ga-init.js`, `clarity-init.js`-এর জন্য) `scripts/build.mjs`-এর মতোই ম্যানুয়ালি বসানো। এই তিনটি ফাইলের কোনো একটির content বদলালে নতুন hash `npm run build`-এর পর `dist/_headers`-এ দেখে `vercel.json`-এ কপি করে নিতে হবে, নাহলে সেই ফাইলের inline script Vercel-এ CSP-তে block হয়ে যাবে।
+
 **GitHub Pages:** `.github/workflows/deploy-pages.yml` workflow `main`-এ push হলে `node scripts/build.mjs` চালিয়ে `dist/` build করে GitHub Pages-এ deploy করে (npm install লাগে না)। এক-বারের জন্য:
 
 1. GitHub repo-এর **Settings → Pages**-এ যান। **Source**-এ **GitHub Actions** নির্বাচন করুন (branch/folder পদ্ধতি নয়)।
