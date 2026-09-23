@@ -10,6 +10,16 @@
 
 **Cloudflare Pages / Netlify:** build command `npm run build`, output directory `dist`। Build-এর runtime dependency শুধু Node.js; `_headers` ও `_redirects` output-এ অন্তর্ভুক্ত। Platform-specific domain binding ও DNS configure করুন।
 
+**GitHub Pages:** `.github/workflows/deploy-pages.yml` workflow `main`-এ push হলে `node scripts/build.mjs` চালিয়ে `dist/` build করে GitHub Pages-এ deploy করে (npm install লাগে না)। এক-বারের জন্য:
+
+1. GitHub repo-এর **Settings → Pages**-এ যান। **Source**-এ **GitHub Actions** নির্বাচন করুন (branch/folder পদ্ধতি নয়)।
+2. `main`-এ push করলে workflow নিজে থেকে চলবে; **Actions** ট্যাবে progress দেখা যাবে। প্রথম সফল run-এর পর repo-এর *Pages* সেকশনে live URL (`https://<user>.github.io/<repo>/`) দেখাবে।
+3. `subromart.com` custom domain হিসেবে ব্যবহার করতে **Settings → Pages → Custom domain**-এ `subromart.com` লিখুন এবং **Enforce HTTPS** চালু করুন। build ইতিমধ্যে `dist/CNAME`-এ `subromart.com` লিখে রাখে, তাই প্রতিটি deploy-এ domain setting টিকে থাকে।
+4. DNS-এ apex domain (`subromart.com`)-এর জন্য GitHub Pages-এর ৪টি A record যোগ করুন: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (ঐচ্ছিক IPv6 AAAA: `2606:50c0:8000::153`, `8001::153`, `8002::153`, `8003::153`)। `www` চাইলে সেটির CNAME `<user>.github.io`-তে দিন। বিদ্যমান email MX/TXT record অপরিবর্তিত রাখুন।
+5. DNS propagate ও certificate issue হতে কিছু সময় লাগতে পারে; **Settings → Pages**-এ domain-এর পাশে green check না আসা পর্যন্ত Enforce HTTPS off থাকতে পারে।
+
+Repository root-এ static site থাকলে (subpath serving) সব asset ও page absolute path (`/assets/...`, `/solutions/...`) ব্যবহার করে, তাই custom domain ছাড়া `https://<user>.github.io/<repo>/` subpath-এ hosting করলে asset link ভেঙে যাবে। তাই custom domain (ধাপ ৩) ছাড়া GitHub Pages ব্যবহার না করাই ভালো।
+
 **Nginx:** document root হবে dist-এর contents। একটি উদাহরণ:
 
 ```nginx
