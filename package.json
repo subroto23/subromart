@@ -1,0 +1,23 @@
+{
+  "name": "subromart",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Bilingual, accessible software studio website for Subromart. Pure HTML, CSS and JavaScript.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node tests/browser.mjs",
+    "sync:profile": "node scripts/sync-profile.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "sharp": "^0.35.4"
+  }
+}

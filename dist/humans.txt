@@ -1,0 +1,6 @@
+Subromart
+Founder & CEO: Subroto Das
+Contact: subrotodas1714037@gmail.com
+Location: Dhaka, Bangladesh
+Languages: Bengali, English
+Built with semantic HTML, CSS and vanilla JavaScript.

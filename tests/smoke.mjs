@@ -1,0 +1,17 @@
+import { chromium } from '@playwright/test';
+import fs from 'node:fs/promises';
+await fs.mkdir('reports',{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1,colorScheme:'light'});
+page.on('pageerror',e=>console.log('PAGE ERROR:',e.message));
+page.on('console',m=>{if(m.type()==='error')console.log('CONSOLE:',m.text());});
+await page.goto('http://localhost:4173/bn/',{waitUntil:'networkidle'});
+await page.screenshot({path:'reports/home-bn-desktop.png',fullPage:true});
+console.log(await page.evaluate(()=>({title:document.title,scroll:document.documentElement.scrollWidth,width:innerWidth,h1:document.querySelector('h1').textContent,height:document.documentElement.scrollHeight})));
+await page.goto('http://localhost:4173/',{waitUntil:'networkidle'});
+await page.screenshot({path:'reports/home-en-desktop.png',fullPage:true});
+await page.setViewportSize({width:390,height:844});
+await page.goto('http://localhost:4173/bn/',{waitUntil:'networkidle'});
+await page.screenshot({path:'reports/home-bn-mobile.png',fullPage:true});
+console.log(await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth,height:document.documentElement.scrollHeight})));
+await browser.close();

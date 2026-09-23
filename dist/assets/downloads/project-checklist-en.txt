@@ -1,0 +1,27 @@
+SUBROMART — PROJECT AGREEMENT CHECKLIST
+https://subromart.com/client-care/
+
+Project name: ____________________
+Contact person: ____________________
+
+[ ] Scope & total cost
+What will the first release include? List the price, payment milestones, hosting and recurring service costs. Agree how changes will be estimated before they are built.
+Agreed notes: ____________________
+
+[ ] Progress you can review
+Choose who reviews each milestone, the workflows to demonstrate and the checks needed for acceptance. Record feedback and resolve the agreed issues before signing off.
+Agreed notes: ____________________
+
+[ ] Ownership & handover
+Document who owns the domain, hosting, application accounts and business data. Specify source-code rights, third-party licences, data export, training and the handover format in your proposal.
+Agreed notes: ____________________
+
+[ ] Support after launch
+Separate bug fixes from new features. Agree support hours, response targets, maintenance fees, backup responsibilities and how access is transferred if the engagement ends. Coverage follows the written plan.
+Agreed notes: ____________________
+
+For discussion; this checklist is not a signed proposal or purchase. Do not include passwords or private customer records.
+
+Subroto Das | Subromart
+subrotodas1714037@gmail.com
+https://me.subromart.com
