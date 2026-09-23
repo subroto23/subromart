@@ -4,6 +4,6 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-8X9Dp+rOJBFr53mvCseJtsIEYV9P40FwbIT76mAIkoE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-8X9Dp+rOJBFr53mvCseJtsIEYV9P40FwbIT76mAIkoE=' 'sha256-6ge1QiPf3KRrP7T656XlGM4L2bRh4lTdGZnzlxbZKSs=' 'sha256-cf+IAfoEFFmA7HTJxecwQAKTaPkNuF+oTEIsmT//2LE=' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 /assets/*
   Cache-Control: public, max-age=3600, must-revalidate
